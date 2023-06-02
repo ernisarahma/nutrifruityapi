@@ -5,7 +5,7 @@ const config = mysql.createPool({
     host: 'localhost',
     user: 'root',
     password: '',
-    database: 'nutrifuity',
+    database: 'nutrifruity',
 });
 
 exports.config = config;
