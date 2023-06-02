@@ -35,9 +35,9 @@ app.get('/buah/:id', function (req, res){
 
   // Query untuk mendapatkan data buah, kandungan, dan manfaat berdasarkan ID buah
   const query = `
-    SELECT buah.id, buah.nama_buah, buah.gambar, kandungan.id AS kandungan_id, kandungan.kandungan, manfaat.id AS manfaat_id, manfaat.manfaat
+    SELECT buah.id, buah.nama_buah, buah.gambar, nutrisi.id AS nutrisi_id, nutrisi.nutrisi, manfaat.id AS manfaat_id, manfaat.manfaat
     FROM buah
-    LEFT JOIN kandungan ON buah.id = kandungan.buah_id
+    LEFT JOIN nutrisi ON buah.id = nutrisi.buah_id
     LEFT JOIN manfaat ON buah.id = manfaat.buah_id
     WHERE buah.id = ?
   `;
@@ -57,17 +57,17 @@ app.get('/buah/:id', function (req, res){
           id: row.id,
           nama_buah: row.nama_buah,
           gambar: row.gambar,
-          kandungan: [],
+          nutrisi: [],
           manfaat: [],
         };
       }
 
       // Jika kandungan tidak kosong dan belum ada dalam array, tambahkan ke array kandungan
-      if (row.kandungan_id && row.kandungan && !buah.kandungan.some((k) => k.id === row.kandungan_id)) {
-        buah.kandungan.push({
-          id: row.kandungan_id,
+      if (row.nutrisi && row.nutrisi && !buah.nutrisi.some((k) => k.id === row.nutrisi)) {
+        buah.nutrisi.push({
+          id: row.nutrisi_id,
           buah_id: buah.id,
-          kandungan: row.kandungan,
+          nutrisi: row.nutrisi,
         });
       }
 
