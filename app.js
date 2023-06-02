@@ -86,6 +86,6 @@ app.get('/buah/:id', function (req, res){
 });
 
 // Menjalankan server
-app.listen(3000, () => {
+app.listen(3002, () => {
   console.log('Server connected!');
 });
