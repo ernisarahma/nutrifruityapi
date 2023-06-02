@@ -2,9 +2,9 @@ const mysql = require('mysql');
 
 // Konfigurasi koneksi database
 const config = mysql.createPool({
-    host: '34.126.92.129',
-    user: 'nutrifruity1',
-    password: 'nutrifruity1',
+    host: '34.128.89.206',
+    user: 'nutrifruity',
+    password: 'nutrifruity',
     database: 'nutrifruity',
 });
 
