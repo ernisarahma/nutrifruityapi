@@ -8,12 +8,6 @@ app.use(express.json());
 app.use(cors());
 app.use(bodyParser.urlencoded({extended: true}));
 
-// // Membuat koneksi ke database
-// connection.connect((err) => {
-//   if (err) throw err;
-//   console.log('Terhubung ke database Nutrifuity');
-// });
-
 // API endpoint untuk mendapatkan data buah saja
 app.get('/buah', function (req, res){
     // Query untuk mendapatkan data buah dari tabel buah
@@ -30,7 +24,7 @@ app.get('/buah', function (req, res){
 });  
 
 // API endpoint untuk mendapatkan data buah, kandungan, dan manfaat
-app.get('/buah/:id', function (req, res){
+app.get('/buah/:id', function (req, res) {
   const buahId = req.params.id;
 
   // Query untuk mendapatkan data buah, kandungan, dan manfaat berdasarkan ID buah
@@ -43,7 +37,7 @@ app.get('/buah/:id', function (req, res){
   `;
 
   config.query(query, buahId, (err, results) => {
-    if(err){
+    if (err) {
       console.log(err);
     }
 
@@ -63,7 +57,7 @@ app.get('/buah/:id', function (req, res){
       }
 
       // Jika kandungan tidak kosong dan belum ada dalam array, tambahkan ke array kandungan
-      if (row.nutrisi && row.nutrisi && !buah.nutrisi.some((k) => k.id === row.nutrisi)) {
+      if (row.nutrisi_id && row.nutrisi && !buah.nutrisi.some((k) => k.id === row.nutrisi_id)) {
         buah.nutrisi.push({
           id: row.nutrisi_id,
           buah_id: buah.id,
